@@ -22,8 +22,8 @@ module.exports.languages = {
     "en": {
         "invaildNumber": "%1 is not an invalid number",
         "cancelSuccess": "Refused %1 thread!",
-        "notiBox": "Ayush's BoT Connected Successfully!\nUse .help for more info :>",
-        "approveSuccess": "Approved successfully %1 threads!",
+        "notiBox": "ITACHI BOT CONNECTED ✅📩!\nUse .help for more info :>",
+        "approveSuccess": "APPROVED SUCCESSFUL ✅💌 %1 threads!",
 
         "cantGetPendingList": "Can't get the pending list!",
         "returnListPending": "»「PENDING」«❮ The whole number of threads to approve is: %1 thread ❯\n\n%2",
