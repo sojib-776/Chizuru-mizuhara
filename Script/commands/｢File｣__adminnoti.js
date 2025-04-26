@@ -1,114 +1,165 @@
-const fs = require('fs');
-const request = require('request');
-
 module.exports.config = {
-    name: "adminnoti",
-    version: "1.0.0",
-    hasPermission: 2,
-    credits: "𝐈𝐬𝐥𝐚𝐦𝐢𝐜𝐤 𝐂𝐲𝐛𝐞𝐫",
-    description: "",
-    commandCategory: "admin",
-    usages: "[msg]",
-    cooldowns: 5,
+
+  name: "joinnoti",
+
+  eventType: ["log:subscribe"],
+
+  version: "1.0.1",
+
+  credits: "nazrul",
+
+  description: "Notify bot or group member with random gif/photo/video",
+
+  dependencies: {
+
+    "fs-extra": "",
+
+    "path": "",
+
+    "pidusage": ""
+
+  }
+
+};
+
+
+
+module.exports.onLoad = function () {
+
+    const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
+
+    const { join } = global.nodemodule["path"];
+
+
+
+  const path = join(__dirname, "Nazrul", "font");
+
+  if (existsSync(path)) mkdirSync(path, { recursive: true });	
+
+
+
+  const path2 = join(__dirname, "Nazrul", "font");
+
+    if (!existsSync(path2)) mkdirSync(path2, { recursive: true });
+
+
+
+    return;
+
 }
 
-let atmDir = [];
 
-const getAtm = (atm, body) => new Promise(async (resolve) => {
-    let msg = {}, attachment = [];
-    msg.body = body;
-    for(let eachAtm of atm) {
-        await new Promise(async (resolve) => {
-            try {
-                let response =  await request.get(eachAtm.url),
-                    pathName = response.uri.pathname,
-                    ext = pathName.substring(pathName.lastIndexOf(".") + 1),
-                    path = __dirname + `/cache/${eachAtm.filename}.${ext}`
-                response
-                    .pipe(fs.createWriteStream(path))
-                    .on("close", () => {
-                        attachment.push(fs.createReadStream(path));
-                        atmDir.push(path);
-                        resolve();
-                    })
-            } catch(e) { console.log(e); }
-        })
-    }
-    msg.attachment = attachment;
-    resolve(msg);
-})
 
-module.exports.handleReply = async function ({ api, event, handleReply, Users, Threads, getText }) {
-    
-    const moment = require("moment-timezone");
-      var gio = moment.tz("Asia/Manila").format("DD/MM/YYYY - HH:mm:s");
-    const { threadID, messageID, senderID, body } = event;
-    let name = await Users.getNameUser(senderID);
-    switch (handleReply.type) {
-        case "sendnoti": {
-            let text = `${name} replied to your announce\n\ntime : ${gio}\nreply : ${body}\n\nfrom group : ${(await Threads.getInfo(threadID)).threadName || "unknown"}`;
-            if(event.attachments.length > 0) text = await getAtm(event.attachments, `${body}${name} replied to your announce\n\ntime : ${gio}\n\nfrom group : ${(await Threads.getInfo(threadID)).threadName || "unknown"}`);
-            api.sendMessage(text, handleReply.threadID, (err, info) => {
-                atmDir.forEach(each => fs.unlinkSync(each))
-                atmDir = [];
-                global.client.handleReply.push({
-                    name: this.config.name,
-                    type: "reply",
-                    messageID: info.messageID,
-                    messID: messageID,
-                    threadID
-                })
-            });
-            break;
-        }
-        case "reply": {
-            let text = `admin ${name} replied to you\n\nreply : ${body}\n\nreply to this message if you want to respond again.`;
-            if(event.attachments.length > 0) text = await getAtm(event.attachments, `${body}${name} replied to you\n\nreply to this message if you want to respond again.`);
-            api.sendMessage(text, handleReply.threadID, (err, info) => {
-                atmDir.forEach(each => fs.unlinkSync(each))
-                atmDir = [];
-                global.client.handleReply.push({
-                    name: this.config.name,
-                    type: "sendnoti",
-                    messageID: info.messageID,
-                    threadID
-                })
-            }, handleReply.messID);
-            break;
-        }
-    }
-}
 
-module.exports.run = async function ({ api, event, args, Users }) {
-    const moment = require("moment-timezone");
-      var gio = moment.tz("Asia/Manila").format("DD/MM/YYYY - HH:mm:s");
-    const { threadID, messageID, senderID, messageReply } = event;
-    if (!args[0]) return api.sendMessage("please input message", threadID);
-    let allThread = global.data.allThreadID || [];
-    let can = 0, canNot = 0;
-    let text = `message from admins\n\ntime : ${gio}\nadmin name : ${await Users.getNameUser(senderID)}\nmessage : ${args.join(" ")}\n\nreply to this message if you want to respond from this announce.`;
-    if(event.type == "message_reply") text = await getAtm(messageReply.attachments, `message from admins\n\ntime : ${gio}\nadmin name : ${await Users.getNameUser(senderID)}\nmessage : ${args.join(" ")}\n\nreply to this message if you want to respond from this announce.`);
-    await new Promise(resolve => {
-        allThread.forEach((each) => {
-            try {
-                api.sendMessage(text, each, (err, info) => {
-                    if(err) { canNot++; }
-                    else {
-                        can++;
-                        atmDir.forEach(each => fs.unlinkSync(each))
-                        atmDir = [];
-                        global.client.handleReply.push({
-                            name: this.config.name,
-                            type: "sendnoti",
-                            messageID: info.messageID,
-                            messID: messageID,
-                            threadID
-                        })
-                        resolve();
-                    }
-                })
-            } catch(e) { console.log(e) }
-        })
-    })
-    api.sendMessage(`send to ${can} thread, not send to ${canNot} thread`, threadID);
-}
+
+module.exports.run = async function({ api, event }) {
+
+  const { join } = global.nodemodule["path"];
+
+  const { threadID } = event;
+
+  if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
+
+    api.changeNickname(`${(!global.config.BOTNAME) ? " " : global.config.BOTNAME}`, threadID, api.getCurrentUserID());
+
+    const fs = require("fs");
+
+    return api.sendMessage("চ্ঁলে্ঁ এ্ঁসে্ঁছি্ঁ ITACHI UCHIHA 📩💥 এঁখঁনঁ তোঁমাঁদেঁরঁ সাঁথেঁ আঁড্ডাঁ দিঁবঁ..! ", event.threadID, () => api.sendMessage({body:`╔════•| ✿ |•════╗\nআ্ঁস্ঁসা্ঁলা্ঁমু্ঁ💚আ্ঁলা্ঁই্ঁকু্ঁম্ঁ\n╚════•| ✿ |•════╝
+
+________________________
+
+𝐓𝐡𝐚𝐧𝐤 𝐲𝐨𝐮 𝐬𝐨 𝐦𝐮𝐜𝐡 𝐟𝐨𝐫 𝐚𝐝𝐝𝐢𝐧𝐠 𝐦𝐞 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐢-𝐠𝐫𝐨𝐮𝐩-🖤🤗\n𝐈 𝐰𝐢𝐥𝐥 𝐚𝐥𝐰𝐚𝐲𝐬 𝐬𝐞𝐫𝐯𝐞 𝐲𝐨𝐮 𝐢𝐧𝐚𝐡𝐚𝐥𝐥𝐚𝐡 🌺❤️-!!
+
+________________________\n\n𝐓𝐨 𝐯𝐢𝐞𝐰 𝐚𝐧𝐲 𝐜𝐨𝐦𝐦𝐚𝐧𝐝
+
+
+
+${global.config.PREFIX}Help\n${global.config.PREFIX}Info\n${global.config.PREFIX}Admin
+
+________________________\n★যে্ঁকো্ঁনো্ঁ অ্ঁভি্ঁযো্ঁগ্ঁ অ্ঁথ্ঁবা্ৃ হে্ঁল্প্ঁ এ্ঁর্ঁ জ্ঁন্য্ঁ এ্ঁড্ঁমি্ঁন্ঁ SOJIB কে্ঁ ন্ঁক্ঁ ক্ঁর্ঁতে্ঁ পা্ঁরে্ঁন্ঁ★\nFACEBOOK 📥:  https://www.facebook.com/share/19CR8ZVFUK/ 𝐎𝐫 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩: 01727501820 📠
+
+\n⋆✦⎯⎯⎯⎯⎯⎯⎯⎯✦⋆\n𝐂𝐫𝐞𝐚𝐭𝐨𝐫 ➢ SOJIB REZA `, attachment: fs.createReadStream(__dirname + "/Nazrul/join.jpeg")} ,threadID));
+
+  }
+
+  else {
+
+    try {
+
+      const { createReadStream, existsSync, mkdirSync, readdirSync } = global.nodemodule["fs-extra"];
+
+      let { threadName, participantIDs } = await api.getThreadInfo(threadID);
+
+
+
+      const threadData = global.data.threadData.get(parseInt(threadID)) || {};
+
+      const path = join(__dirname, "Nazrul", "font");
+
+      const pathGif = join(path, `${threadID}.gif`);
+
+
+
+      var mentions = [], nameArray = [], memLength = [], i = 0;
+
+
+
+      for (id in event.logMessageData.addedParticipants) {
+
+        const userName = event.logMessageData.addedParticipants[id].fullName;
+
+        nameArray.push(userName);
+
+        mentions.push({ tag: userName, id });
+
+        memLength.push(participantIDs.length - i++);
+
+      }
+
+      memLength.sort((a, b) => a - b);
+
+
+
+      (typeof threadData.customJoin == "undefined") ? msg = "╔════•| ✿ |•════╗\nআ্ঁস্ঁসা্ঁলা্ঁমু্ঁ💚আ্ঁলা্ঁই্ঁকু্ঁম্ঁ\n╚════•| ✿ |•════╝\nহা্ঁসি্ঁ ম্ঁজা্ঁ ঠা্ঁট্টা্ঁয়্ঁ ব্ঁন্ধু্ঁত্ব্ঁ হ্ঁবে্ঁ চি্ঁর্ঁকা্ঁলী্ঁন্ঁ বে্ঁচে্ঁ থা্ঁকু্ঁক্ঁ ব্ঁন্ধু্ঁত্ব্ঁ\nভা্ঁলো্ঁবা্ঁসা্ঁর্ঁ স্ঁম্প্ঁর্কে্ঁ আ্ঁজী্ঁব্ঁন্ঁ\n\n {name} \n\nআ্ঁপ্ঁনি্ঁ এ্ঁই্ঁ গ্রু্ঁফে্ঁর্ঁ {soThanhVien} না্ঁম্বা্ঁর্ঁ মে্ঁম্বা্ঁর্ঁ\n\n {threadName}\n\n🥀 গ্রুঁপেঁরঁ পঁক্ষঁ থেঁকেঁ আঁপঁনাঁকেঁ স্বাঁগঁতঁমঁ♥\n\n🥰🥀ᏔᎬᏞᏟϴᎷᎬ 🥀🥰 \n    ┌────♣─────┐\n    ♦  𝐒𝐮𝐤𝐡𝐢 𝐌𝐞𝐰 ♦\n    └────♣─────┘\n\n⋆✦⎯⎯⎯⎯⎯⎯⎯⎯✦⋆\n𝐂𝐫𝐞𝐚𝐭𝐨𝐫 ➢ SOJIB REZA" : msg = threadData.customJoin;
+
+      msg = msg
+
+      .replace(/\{name}/g, nameArray.join(', '))
+
+      .replace(/\{type}/g, (memLength.length > 1) ?  'You' : 'Friend')
+
+      .replace(/\{soThanhVien}/g, memLength.join(', '))
+
+      .replace(/\{threadName}/g, threadName);
+
+
+
+      if (existsSync(path)) mkdirSync(path, { recursive: true });
+
+
+
+      const randomPath = readdirSync(join(__dirname, "Nazrul", "font"));
+
+
+
+      if (existsSync(pathGif)) formPush = { body: msg, attachment: createReadStream(pathGif), mentions }
+
+      else if (randomPath.length != 0) {
+
+        const pathRandom = join(__dirname, "Nazrul", "font", `${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
+
+        formPush = { body: msg, attachment: createReadStream(pathRandom), mentions }
+
+      }
+
+      else formPush = { body: msg, mentions }
+
+
+
+      return api.sendMessage(formPush, threadID);
+
+    } catch (e) { return console.log(e) };
+
+  }
+
+          }
