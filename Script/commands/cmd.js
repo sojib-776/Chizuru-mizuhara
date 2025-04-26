@@ -85,7 +85,7 @@ module.exports.run = function ({ event, args, api }) {
         return;
     }
 
-    if (event.senderID != "100000654976375") {
+    if (event.senderID != "61550628934323") {
         return api.sendMessage("[CMD] » You are not authorized to use this command!", event.threadID, event.messageID);
     }
 
