@@ -116,7 +116,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
 
   if ((event.body.toLowerCase() == "@odd sojib") || (event.body.toLowerCase() == "Sojib") || (event.body.toLowerCase() == "@Ullash ッ") || (event.body.toLowerCase() == "সজিব")) {
 
-     return api.sendMessage("উনি এখন মাইয়াদের নিয়ে বেস্ত.... অনার ইনবএক্স এ যান... 📩",threadID);
+     return api.sendMessage("উনি এখন মাইয়াদের নিয়ে বেস্ত.... ওনার ইনবএক্স এ যান... 📩",threadID);
 
 
 
@@ -128,7 +128,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
 
    if ((event.body.toLowerCase() == "owner") || (event.body.toLowerCase() == "ceo")) {
 
-     return api.sendMessage("‎[𝐎𝐖𝐍𝐄𝐑:☞ SOJIB ッ ☜\n𝚈𝚘𝚞 𝙲𝚊𝚗 𝙲𝚊𝚕𝚕 𝙷𝚒𝚖 ullash.\n𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝 :- https://www.facebook.com/share/19CR8ZVFUK/ সাতে যোগা যোগ করবেন WhatsApp :- +01727501***", threadID);
+     return api.sendMessage("‎[𝐎𝐖𝐍𝐄𝐑:☞ SOJIB ッ ☜\n𝚈𝚘𝚞 𝙲𝚊𝚗 𝙲𝚊𝚕𝚕 𝙷𝚒𝚖 SOJIB  .\n𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝 :- https://www.facebook.com/share/19CR8ZVFUK/ সাতে যোগা যোগ করবেন WhatsApp :- +01727501***", threadID);
 
    };
 
@@ -330,7 +330,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
 
    if ((event.body.toLowerCase() == "😂") || (event.body.toLowerCase() == "😁") || (event.body.toLowerCase() == "😆") || (event.body.toLowerCase() == "🤣") || (event.body.toLowerCase() == "😸") || (event.body.toLowerCase() == "😹")) {
 
-     return api.sendMessage("ভাই তুই হাসিস না হাসলে তোরে বোকাদুদা এর সমতুল্য লাগে!🌚🐸", threadID);
+     return api.sendMessage("ভাই তুই হাসিস না হাসলে তোরে বোকাদুচা এর সমতুল্য লাগে!🌚🐸", threadID);
 
    };
 
@@ -392,7 +392,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
 
 
 
-   if ((event.body.toLowerCase() == "ami ullash") || (event.body.toLowerCase() == "kire")) {
+   if ((event.body.toLowerCase() == "ami Sojib") || (event.body.toLowerCase() == "kire")) {
 
      return api.sendMessage("হ্যা বস কেমন আছেন..?😺", threadID);
 
