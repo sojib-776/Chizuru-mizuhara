@@ -214,9 +214,9 @@ const text = `╭──────•◈•──────╮\n│𝗨𝘀�
 
     var link = [
 
-"https://i.imgur.com/GZnuKkh.jpeg", "https://i.imgur.com/F2QP2K8.gif", "https://i.imgur.com/GZnuKkh.jpeg", "https://i.imgur.com/F2QP2K8.gif",
+"https://i.imgur.com/dJI9cpV.jpeg", "https://i.imgur.com/dJI9cpV.jpeg", "https://i.imgur.com/dJI9cpV.jpeg", "https://i.imgur.com/dJI9cpV.jpeg",
 
-"https://i.imgur.com/F2QP2K8.gif",
+"https://i.imgur.com/dJI9cpV.jpeg",
 
 "https://i.imgur.com/GZnuKkh.jpeg",
 
@@ -236,7 +236,7 @@ const leiamname = getText("moduleInfo", command.config.name, command.config.desc
 
   var link = [
 
-"https://i.imgur.com/GZnuKkh.jpeg",
+"https://i.imgur.com/dJI9cpV.jpeg",
 
   ]
 
