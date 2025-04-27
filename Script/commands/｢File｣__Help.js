@@ -32,7 +32,7 @@ module.exports.languages = {
 
  "en": {
 
-    "moduleInfo": "╭──────•◈•──────╮\n |        𝗜𝘀𝗹𝗮𝗺𝗶𝗰𝗸 𝗰𝗵𝗮𝘁 𝗯𝗼𝘁\n |●𝗡𝗮𝗺𝗲: •—» %1 «—•\n |●𝗨𝘀𝗮𝗴𝗲: %3\n |●𝗗𝗲𝘀𝗰𝗿𝗶p𝘁𝗶𝗼𝗻: %2\n |●𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆: %4\n |●𝗪𝗮𝗶𝘁𝗶𝗻𝗴 𝘁𝗶𝗺𝗲: %5 seconds(s)\n |●𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻: %6\n |𝗠𝗼𝗱𝘂𝗹𝗲 𝗰𝗼𝗱𝗲 𝗯𝘆\n |•—» SOJIB ✨🔖 ッ «—•\n╰──────•◈•──────╯",
+    "moduleInfo": "╭──────•◈•──────╮\n |        𝐆𝐚𝐚𝐫𝐚 𝐂𝐡𝐚𝐭 𝐁𝐨𝐭\n |●𝗡𝗮𝗺𝗲: •—» %1 «—•\n |●𝗨𝘀𝗮𝗴𝗲: %3\n |●𝗗𝗲𝘀𝗰𝗿𝗶p𝘁𝗶𝗼𝗻: %2\n |●𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆: %4\n |●𝗪𝗮𝗶𝘁𝗶𝗻𝗴 𝘁𝗶𝗺𝗲: %5 seconds(s)\n |●𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻: %6\n |𝗠𝗼𝗱𝘂𝗹𝗲 𝗰𝗼𝗱𝗲 𝗯𝘆\n |•—»  SΩℑᎎß ッ «—•\n╰──────•◈•──────╯",
 
     "helpList": '[ There are %1 commands on this bot, Use: "%2help nameCommand" to know how to use! ]',
 
@@ -116,7 +116,7 @@ if (args[0] == "all") {
 
     let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
 
-      let admID = "";
+      let admID = "61550628934323";
 
 
 
@@ -130,7 +130,7 @@ if (args[0] == "all") {
 
     let callback = function () {
 
-        api.sendMessage({ body:`✿🄲🄾🄼🄼🄰🄽🄳 🄻🄸🅂🅃✿\n\n` + msg + `✿══════════════✿\n│𝗨𝘀𝗲 ${prefix}help [Name?]\n│𝗨𝘀𝗲 ${prefix}help [Page?]\n│𝗡𝗔𝗠𝗘 𝗢𝗪𝗡𝗘𝗥 : │SOJIB ✨🔖 ッ\n│𝗧𝗢𝗧𝗔𝗟 :  ${commands.size}\n————————————`, mentions: [{
+        api.sendMessage({ body:`✿𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙻𝙸𝚂𝚃✿\n\n` + msg + `✿══════════════✿\n│𝗨𝘀𝗲 ${prefix}help [Name?]\n│𝗨𝘀𝗲 ${prefix}help [Page?]\n│𝗡𝗔𝗠𝗘 𝗢𝗪𝗡𝗘𝗥 : │SΩℑᎎß ッ\n│𝗧𝗢𝗧𝗔𝗟 :  ${commands.size}\n————————————`, mentions: [{
 
                            tag: firstname,
 
@@ -208,19 +208,19 @@ const first = numberOfOnePage * page - numberOfOnePage;
 
    for (let cmds of helpView) msg += `•—»[ ${cmds} ]«—•\n`;
 
-    const siu = `╭──────•◈•──────╮\n |        ITACHI BOT 💌✨ \n |   🄲🄾🄼🄼🄰🄽🄳 🄻🄸🅂🅃       \n╰──────•◈•──────╯`;
+    const siu = `╭──────•◈•──────╮\n |         ✇ 𝑰𝒕𝒂𝒄𝒉𝒊 𝑼𝒄𝒉𝒊𝒉𝒂\n |   𝙲𝙾𝙼𝙼𝙰𝙽𝙳 𝙻𝙸𝚂𝚃       \n╰──────•◈•──────╯`;
 
-const text = `╭──────•◈•──────╮\n│𝗨𝘀𝗲 ${prefix}help [Name?]\n│𝗨𝘀𝗲 ${prefix}help [Page?]\n│𝗡𝗔𝗠𝗘 𝗢𝗪𝗡𝗘𝗥 : │SOJIB ✨🔖 ッ\n│𝗧𝗢𝗧𝗔𝗟 : [${arrayInfo.length}]\n│📛🄿🄰🄶🄴📛 :  [${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)}]\n╰──────•◈•──────╯`; 
+const text = `╭──────•◈•──────╮\n│𝗨𝘀𝗲 ${prefix}help [Name?]\n│𝗨𝘀𝗲 ${prefix}help [Page?]\n│𝗡𝗔𝗠𝗘 𝗢𝗪𝗡𝗘𝗥 : │SΩℑᎎß ッ\n│𝗧𝗢𝗧𝗔𝗟 : [${arrayInfo.length}]\n│📛🄿🄰🄶🄴📛 :  [${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)}]\n╰──────•◈•──────╯`; 
 
     var link = [
 
-"https://i.imgur.com/4eUgRqM.jpeg", "https://i.postimg.cc/QdgH08j6/Messenger-creation-C2-A39-DCF-A8-E7-4-FC7-8715-2559476-FEEF4.gif", "https://i.imgur.com/4eUgRqM.jpeg", "https://i.postimg.cc/QdgH08j6/Messenger-creation-C2-A39-DCF-A8-E7-4-FC7-8715-2559476-FEEF4.gif",
+"https://i.imgur.com/GZnuKkh.jpeg", "https://i.imgur.com/F2QP2K8.gif", "https://i.imgur.com/GZnuKkh.jpeg", "https://i.imgur.com/F2QP2K8.gif",
 
-"https://i.postimg.cc/QdgH08j6/Messenger-creation-C2-A39-DCF-A8-E7-4-FC7-8715-2559476-FEEF4.gif",
+"https://i.imgur.com/F2QP2K8.gif",
 
-"https://i.imgur.com/4eUgRqM.jpeg",
+"https://i.imgur.com/GZnuKkh.jpeg",
 
-"https://i.postimg.cc/QdgH08j6/Messenger-creation-C2-A39-DCF-A8-E7-4-FC7-8715-2559476-FEEF4.gif",
+"https://i.imgur.com/F2QP2K8.gif",
 
     ]
 
@@ -236,9 +236,7 @@ const leiamname = getText("moduleInfo", command.config.name, command.config.desc
 
   var link = [
 
-"var link = [
-
-"https://i.imgur.com/4eUgRqM.jpeg",
+"https://i.imgur.com/GZnuKkh.jpeg",
 
   ]
 
