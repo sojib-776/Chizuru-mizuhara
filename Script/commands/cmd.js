@@ -49,7 +49,7 @@ const loadCommand = function ({ moduleList, threadID, messageID, api }) {
     if (errorList.length > 0) {
         api.sendMessage("[CMD] » Some modules failed to load: " + errorList.join(", "), threadID, messageID);
     } else {
-        api.sendMessage("[CMD] » Successfully loaded all modules: " + moduleList.join(", "), threadID, messageID);
+        api.sendMessage("[CMD] ✅ » Successfully loaded all modules: " + moduleList.join(", "), threadID, messageID);
     }
 
     writeFileSync(configPath, JSON.stringify(configValue, null, 4), "utf8");
@@ -76,7 +76,7 @@ const unloadModule = function ({ moduleList, threadID, messageID, api }) {
     writeFileSync(configPath, JSON.stringify(configValue, null, 4), "utf8");
     unlinkSync(configPath + ".temp");
 
-    api.sendMessage(`[CMD] » Successfully unloaded ${moduleList.length} command(s)`, threadID, messageID);
+    api.sendMessage(`[CMD] ✅ » Successfully unloaded ${moduleList.length} command(s)`, threadID, messageID);
 };
 
 module.exports.run = function ({ event, args, api }) {
